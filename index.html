@@ -1,1 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tamin Iqbal Toha</title>
 
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: #000000;
+            color: #4a9eff;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        .content-wrapper {
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .text {
+            font-size: clamp(11px, 2vw, 14px);
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.2em;
+            background: #4a9eff;
+            animation: blink 1s infinite;
+            margin-left: 2px;
+            vertical-align: baseline;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .social-links {
+            margin-top: 20px;
+            font-size: clamp(11px, 2vw, 14px);
+            opacity: 0;
+            transition: opacity 0.5s ease-in;
+        }
+
+        .social-links.visible {
+            opacity: 1;
+        }
+
+        .social-links a {
+            margin-right: 15px;
+            color: #4a9eff;
+            text-decoration: underline;
+            transition: opacity 0.3s;
+        }
+
+        .social-links a:hover {
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            .text {
+                font-size: clamp(10px, 3vw, 13px);
+            }
+
+            .cursor {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="content-wrapper">
+    <div class="text" id="typewriter"></div>
+    <span class="cursor" id="cursor"></span>
+
+    <div class="social-links" id="socialLinks">
+        <a href="https://instagram.com/taminiqbaltoha" target="_blank">instagram</a>
+        <a href="mailto:taminiqbaltoha@gmail.com">email</a>
+    </div>
+</div>
+
+<script>
+const fullText = `hello, i'm Tamin Iqbal Toha
+
+i study at Bangladesh Open
+
+beyond my academic focus
+I have equal fascination towards art, film, mma, music, design, fashion, literature, philosophy, technology, psychology, monochromeart
+
+My professional life includes business development consultancy,content production,modeling,photography and filmmaking.
+
+i enjoy exploring how creativity and logic shape new ideas
+
+only goal for the year:
+consume less media
+read more books
+cut down mindless scrolling
+
+
+here's a quote i love:
+“i’d rather live in regret of failure than in regret of never trying.”
+- MJ DEMARCO
+
+that’s all for now.
+i’ll keep adding more as i grow and learn.`;
+
+const typewriterEl = document.getElementById('typewriter');
+const cursorEl = document.getElementById('cursor');
+const socialLinks = document.getElementById('socialLinks');
+
+let index = 0;
+const speed = 30;
+
+function typeWriter() {
+    if (index < fullText.length) {
+        typewriterEl.textContent = fullText.substring(0, index + 1);
+        index++;
+        setTimeout(typeWriter, speed);
+    } else {
+        cursorEl.style.display = 'none';
+        setTimeout(() => {
+            socialLinks.classList.add('visible');
+        }, 300);
+    }
+}
+
+window.addEventListener('load', () => {
+    setTimeout(typeWriter, 500);
+});
+</script>
+
+</body>
+</html>
